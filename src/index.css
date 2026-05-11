@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@theme {
+  /* 컬러 시스템 */
+  --color-bg: #0f0f11;
+  --color-surface: #17171a;
+  --color-border: #2a2a30;
+  --color-text: #f0f0f2;
+  --color-muted: #6b6b7a;
+  --color-accent: #818cf8;
+  --color-accent-hover: #6d75e8;
+  --color-accent-subtle: #818cf880;
+  --color-danger: #f87171;
+  --color-danger-hover: #ef4444;
+  --color-danger-subtle: #f8717133;
+  --color-neutral: #35353d;
+  --color-neutral-hover: #3a3a42;
+  --color-neutral-subtle: #2a2a3080;
+
+  /* 판정 컬러 */
+  --color-correct: #34d399; /* 초록 — 위치·자모 일치 */
+  --color-correct-bg: #34d39918; /* 초록 배경 */
+  --color-correct-border: #34d39945; /* 초록 테두리 */
+
+  --color-present: #fbbf24; /* 노랑 — 자모만 일치 */
+  --color-present-bg: #fbbf2418;
+  --color-present-border: #fbbf2445;
+
+  --color-absent: #3a3a48; /* 회색 — 없음 (텍스트) */
+  --color-absent-bg: #6b6b7a10;
+  --color-absent-border: #6b6b7a20;
+
+  /* 폰트 시스템 */
+  /*
+  - Black Han Sans(font-title) : 게임 타이틀, 결과 타이틀 등 굵고 임팩트 있어야 하는 곳
+  - Noto Sans KR(font-base) : 본문, 게임판, 키보드 등 일반 텍스트
+  - JetBrains Mono(font-mono) : 숫자, 코드 등 모노스페이스가 필요한 곳
+  */
+  --font-base: 'Noto Sans KR', sans-serif;
+  --font-title: 'Black Han Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background-color: #0f0f11;
+  color: #f0f0f2;
+  font-family: var(--font-base);
+}
