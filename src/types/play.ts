@@ -1,0 +1,22 @@
+export type TileState =
+  | 'correct' // 초록 - 해당 자모가 정답에 있음 & 위치도 맞음
+  | 'present' // 노랑 - 해당 자모가 정답에 있음 & 위치는 다름
+  | 'absent'; // 회색 - 해당 자모가 정답에 없음
+
+// 타일 1개 입력 현황
+export interface TileResult {
+  letter: string;
+  state: TileState;
+}
+
+// 게임판 1줄 입력 결과
+export type RowResult = TileResult[];
+
+// 게임 판 전체 결과
+export type BoardResult = RowResult[];
+
+// 게임 진행 상태
+export type GameStatus =
+  | 'playing' // 입력 중
+  | 'won' // 정답 맞춤
+  | 'lost'; // 시도 횟수 초과
