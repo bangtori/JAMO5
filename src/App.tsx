@@ -1,12 +1,12 @@
-import CreateLinkDescription from './components/home/CreateLinkDescription.tsx';
-import HomeHeader from './components/home/HomeHeader.tsx';
-import StartButtons from './components/home/StartButtons.tsx';
-import Divider from './components/ui/Divider.tsx';
+import CreateLinkDescription from './components/home/CreateLinkDescription';
+import HomeHeader from './components/home/HomeHeader';
+import StartButtons from './components/home/StartButtons';
+import Divider from './components/ui/Divider';
 
 function App() {
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-md flex flex-col gap-6  px-6">
+      <div className="w-full max-w-md flex flex-col gap-6 px-6">
         <HomeHeader />
         <StartButtons />
         <Divider>링크 생성이란?</Divider>

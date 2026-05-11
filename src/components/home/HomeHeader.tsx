@@ -7,6 +7,7 @@ export default function HomeHeader() {
         JAMO
         <span className="text-accent text-5xl">5</span>
       </h1>
+      {/* 장식용 타일 — 실제 판정 결과 아님 */}
       <div className="flex items-center gap-3">
         <Tile state="correct" letter="ㅈ" />
         <Tile state="absent" letter="ㅏ" />

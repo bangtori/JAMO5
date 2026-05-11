@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import type { ToastItem, ToastType } from '../types';
+import { TOAST_DURATION } from '../constants';
 // 밖에서 꺼내 쓸 수 있는 기능 명세 = value의 타입
 type ToastContextValue = {
   toasts: ToastItem[];
@@ -24,7 +25,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
     setTimeout(() => {
       removeToast(id);
-    }, 3000);
+    }, TOAST_DURATION);
   }
 
   function removeToast(id: string) {
