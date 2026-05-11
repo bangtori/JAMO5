@@ -3,6 +3,7 @@ import { Plus } from 'lucide-react';
 import Tile from './components/ui/Tile';
 import CapsuleBadge from './components/ui/CapsuleBadge';
 import Divider from './components/ui/Divider';
+import Card from './components/ui/Card';
 function App() {
   return (
     <div className="flex items-center justify-center my-20">
@@ -100,6 +101,15 @@ function App() {
           <div className="flex flex-col gap-4 items-center">
             <Divider />
             <Divider>with text</Divider>
+          </div>
+        </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-2xl">Card</h2>
+          <div className="flex flex-col gap-4 items-center">
+            <Card>
+              <h3 className="text-xl">Card Title</h3>
+              <p className="text-text-muted">Card Description</p>
+            </Card>
           </div>
         </section>
       </div>
