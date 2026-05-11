@@ -1,18 +1,11 @@
 import { createContext, useContext, useState } from 'react';
-
-export type ToastType = 'default' | 'danger' | 'warning';
-
-export type ToastItem = {
-  id: string;
-  type: ToastType;
-  message: string;
-};
-
+import type { ToastItem, ToastType } from '../types';
 // 밖에서 꺼내 쓸 수 있는 기능 명세 = value의 타입
 type ToastContextValue = {
   toasts: ToastItem[];
   showToast: (message: string, type?: ToastType) => void;
-  removeToast: (id: string) => void;
+  // 따로 x 버튼 등 수동 삭제 기능 추가 시 도입
+  //   removeToast: (id: string) => void;
 };
 
 const ToastContext = createContext<ToastContextValue | null>(null);
@@ -21,7 +14,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   function showToast(message: string, type: ToastType = 'default') {
-    const id = Date.now().toString();
+    const id = crypto.randomUUID();
     const newToast: ToastItem = {
       id,
       type,
@@ -39,7 +32,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ToastContext.Provider value={{ toasts, showToast, removeToast }}>
+    <ToastContext.Provider value={{ toasts, showToast }}>
       {children}
     </ToastContext.Provider>
   );

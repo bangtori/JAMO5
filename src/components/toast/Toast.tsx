@@ -1,4 +1,4 @@
-import type { ToastItem, ToastType } from '../../context/ToastContext';
+import type { ToastItem, ToastType } from '../../types';
 import { Info, TriangleAlert, CircleX } from 'lucide-react';
 interface ToastProps {
   toast: ToastItem;

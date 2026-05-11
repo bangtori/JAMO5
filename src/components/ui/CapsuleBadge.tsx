@@ -26,7 +26,7 @@ export default function CapsuleBadge({
 }: CapsuleBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center justify-center border rounded-full ${colorStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`inline-flex items-center justify-center border rounded-full ${colorStyles[variant]} ${sizeStyles[size]} ${className ?? ''}`}
     >
       {children}
     </span>
