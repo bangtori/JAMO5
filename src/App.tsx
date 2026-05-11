@@ -2,6 +2,7 @@ import Button from './components/ui/Button';
 import { Plus } from 'lucide-react';
 import Tile from './components/ui/Tile';
 import CapsuleBadge from './components/ui/CapsuleBadge';
+import Divider from './components/ui/Divider';
 function App() {
   return (
     <div className="flex items-center justify-center my-20">
@@ -92,6 +93,13 @@ function App() {
             <CapsuleBadge variant="neutral" size="lg">
               Large
             </CapsuleBadge>
+          </div>
+        </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-2xl">Divider</h2>
+          <div className="flex flex-col gap-4 items-center">
+            <Divider />
+            <Divider>with text</Divider>
           </div>
         </section>
       </div>
