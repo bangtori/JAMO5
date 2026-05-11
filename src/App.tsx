@@ -1,6 +1,7 @@
 import Button from './components/ui/Button';
 import { Plus } from 'lucide-react';
 import Tile from './components/ui/Tile';
+import CapsuleBadge from './components/ui/CapsuleBadge';
 function App() {
   return (
     <div className="flex items-center justify-center my-20">
@@ -69,6 +70,28 @@ function App() {
             <Tile letter="ㄹ" state="correct" />
             <Tile letter="ㅁ" state="present" />
             <Tile letter="ㅂ" state="absent" />
+          </div>
+        </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-2xl">CapsuleBadge [Accent]</h2>
+          <div className="flex gap-4 items-center">
+            <CapsuleBadge variant="accent" size="sm">
+              Small
+            </CapsuleBadge>
+            <CapsuleBadge variant="accent">Medium</CapsuleBadge>
+            <CapsuleBadge variant="accent" size="lg">
+              Large
+            </CapsuleBadge>
+          </div>
+          <h2 className="text-2xl">CapsuleBadge [Neutral]</h2>
+          <div className="flex gap-4 items-center">
+            <CapsuleBadge variant="neutral" size="sm">
+              Small
+            </CapsuleBadge>
+            <CapsuleBadge variant="neutral">Medium</CapsuleBadge>
+            <CapsuleBadge variant="neutral" size="lg">
+              Large
+            </CapsuleBadge>
           </div>
         </section>
       </div>
