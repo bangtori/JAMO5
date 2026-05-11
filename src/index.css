@@ -40,6 +40,8 @@
   --font-base: 'Noto Sans KR', sans-serif;
   --font-title: 'Black Han Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  --text-2xs: 0.625rem; /* 10px */
 }
 
 body {
