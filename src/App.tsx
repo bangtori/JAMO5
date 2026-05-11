@@ -4,7 +4,10 @@ import Tile from './components/ui/Tile';
 import CapsuleBadge from './components/ui/CapsuleBadge';
 import Divider from './components/ui/Divider';
 import Card from './components/ui/Card';
+import { useToastContext } from './context/ToastContext';
+
 function App() {
+  const { showToast } = useToastContext();
   return (
     <div className="flex items-center justify-center my-20">
       <div className="w-full max-w-lg flex flex-col gap-6">
@@ -110,6 +113,29 @@ function App() {
               <h3 className="text-xl">Card Title</h3>
               <p className="text-text-muted">Card Description</p>
             </Card>
+          </div>
+        </section>
+        <section className="flex flex-col gap-4">
+          <h2 className="text-2xl">Toast</h2>
+
+          <div className="flex gap-4 items-center">
+            <Button onClick={() => showToast('기본 토스트 메시지입니다.')}>
+              Default Toast
+            </Button>
+
+            <Button
+              variant="neutral"
+              onClick={() => showToast('경고 토스트 메시지입니다.', 'warning')}
+            >
+              Warning Toast
+            </Button>
+
+            <Button
+              variant="danger"
+              onClick={() => showToast('에러 토스트 메시지입니다.', 'danger')}
+            >
+              Danger Toast
+            </Button>
           </div>
         </section>
       </div>
