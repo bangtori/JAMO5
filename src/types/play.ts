@@ -9,6 +9,14 @@ export interface TileResult {
   state: TileState;
 }
 
+export type TileDisplayState =
+  | 'empty' // 비어있음
+  | 'active' // 현재 입력 위치
+  | 'filled' // 입력됐지만 미제출
+  | 'correct'
+  | 'present'
+  | 'absent';
+
 // 게임판 1줄 입력 결과
 export type RowResult = TileResult[];
 
