@@ -7,6 +7,7 @@ import { getRemainingTime } from '../utils/date';
 import Button from '../components/ui/Button';
 import { ChevronRight, CircleQuestionMark } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import HowToPlayModal from '../components/waiting/HowToPlayModal';
 
 const DummyTryInfos: TryInfo[] = [
   { isPlayed: false }, // 미도전
@@ -20,6 +21,9 @@ export default function WaitingPage() {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
   const isLinkMode = !!token;
+
+  // 게임 방법 모달 관련
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 더미 데이터 랜덤 로드 용
   const [tryInfo] = useState(
@@ -71,6 +75,7 @@ export default function WaitingPage() {
           size="lg"
           icon={<CircleQuestionMark />}
           iconPosition="right"
+          onClick={() => setIsModalOpen(true)}
         >
           게임 방법
         </Button>
@@ -91,6 +96,10 @@ export default function WaitingPage() {
           </Button>
         )}
       </section>
+      <HowToPlayModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </PageLayout>
   );
 }
