@@ -3,10 +3,14 @@ import Button from '../ui/Button';
 import { Link, Gamepad2, CheckCheck } from 'lucide-react';
 import { useToastContext } from '../../context/ToastContext';
 import { TOAST_DURATION } from '../../constants';
+import { useNavigate } from 'react-router-dom';
 
 export default function StartButtons() {
   const [copied, setCopied] = useState(false);
   const { showToast } = useToastContext();
+
+  const navigate = useNavigate();
+
   function handleCopyLink() {
     showToast('링크가 클립보드에 복사되었습니다.');
     setCopied(true);
@@ -17,7 +21,11 @@ export default function StartButtons() {
   }
   return (
     <section className="flex flex-col gap-3 justify-center">
-      <Button size="lg" icon={<Gamepad2 />}>
+      <Button
+        size="lg"
+        icon={<Gamepad2 />}
+        onClick={() => navigate('/waiting')}
+      >
         혼자 시작하기
       </Button>
       <Button
