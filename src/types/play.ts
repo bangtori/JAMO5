@@ -26,3 +26,9 @@ export type GameStatus =
   | 'playing' // 입력 중
   | 'won' // 정답 맞춤
   | 'lost'; // 시도 횟수 초과
+
+// 게임 도전 현황
+export type TryInfo =
+  | { isPlayed: false }
+  | { isPlayed: true; result: 'won'; attempts: number }
+  | { isPlayed: true; result: 'lost' };

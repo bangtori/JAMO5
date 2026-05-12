@@ -10,9 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/waiting" element={<WaitingPage />} />
-        <Route path="/waiting/:token" element={<WaitingPage />} />
         <Route path="/game" element={<GamePage />} />
-        <Route path="/game/:token" element={<GamePage />} />
         <Route path="/result" element={<ResultPage />} />
       </Routes>
     </BrowserRouter>
