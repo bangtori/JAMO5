@@ -1,12 +1,10 @@
 import Tile from '../ui/Tile';
+import GameTitle from '../ui/GameTitle';
 
 export default function HomeHeader() {
   return (
     <section className="flex flex-col items-center gap-4">
-      <h1 className="font-title text-4xl text-center">
-        JAMO
-        <span className="text-accent text-5xl">5</span>
-      </h1>
+      <GameTitle />
       {/* 장식용 타일 — 실제 판정 결과 아님 */}
       <div className="flex items-center gap-3">
         <Tile state="correct" letter="ㅈ" />

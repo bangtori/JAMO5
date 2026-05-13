@@ -1,4 +1,5 @@
 import CapsuleBadge from '../ui/CapsuleBadge';
+import GameTitle from '../ui/GameTitle';
 import Tile from '../ui/Tile';
 
 interface WaitingHeaderProps {
@@ -13,10 +14,7 @@ export default function WaitingHeader({ isLinkMode }: WaitingHeaderProps) {
           링크로 초대됨
         </CapsuleBadge>
       )}
-      <h1 className="font-title text-4xl text-center">
-        JAMO
-        <span className="text-accent text-5xl">5</span>
-      </h1>
+      <GameTitle />
       <div className="flex flex-col text-center gap-1 text-text-muted text-sm">
         <p>자모 5개짜리 단어를</p>
         <p>5번 안에 맞춰보세요</p>
