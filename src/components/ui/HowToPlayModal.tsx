@@ -1,8 +1,8 @@
-import Button from '../ui/Button';
+import Button from './Button';
 import { X } from 'lucide-react';
-import Divider from '../ui/Divider';
-import Tile from '../ui/Tile';
-import Card from '../ui/Card';
+import Divider from './Divider';
+import Tile from './Tile';
+import Card from './Card';
 interface HowToPlayModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -102,10 +102,14 @@ export default function HowToPlayModal({
                 복합 모음(ㅘ, ㅚ 등)은 사용하지 않아요
               </li>
               <li className="text-sm text-text-muted">
+                같은 자모가 여러 번 입력되면 정답에 있는 개수만큼만
+                초록·노랑으로 표시돼요
+              </li>
+              <li className="text-sm text-text-muted">
                 자모 합계가 5개인 단어만 제출할 수 있어요
               </li>
               <li className="text-sm text-text-muted">
-                시작하기를 누르면 타이머가 시작돼요
+                게임 페이지에 들어가면 타이머가 흘러가요.
               </li>
             </ul>
           </div>

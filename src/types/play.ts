@@ -32,3 +32,9 @@ export type TryInfo =
   | { isPlayed: false }
   | { isPlayed: true; result: 'won'; attempts: number }
   | { isPlayed: true; result: 'lost' };
+
+// 게임 결과
+export interface GameResult {
+  gameStatus: GameStatus;
+  board: BoardResult;
+}

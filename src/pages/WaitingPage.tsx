@@ -7,7 +7,7 @@ import { getRemainingTime } from '../utils/date';
 import Button from '../components/ui/Button';
 import { ChevronRight, CircleQuestionMark } from 'lucide-react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import HowToPlayModal from '../components/waiting/HowToPlayModal';
+import HowToPlayModal from '../components/ui/HowToPlayModal';
 
 const DummyTryInfos: TryInfo[] = [
   { isPlayed: false }, // 미도전
