@@ -6,6 +6,7 @@ import PageLayout from '../components/ui/PageLayout';
 import { useEffect, useState } from 'react';
 import useGameState from '../hooks/useGameState';
 import { useNavigate } from 'react-router-dom';
+import { getPlayTime } from '../utils/date';
 
 export default function GamePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,13 +20,14 @@ export default function GamePage() {
     submitWord,
     keyboardState,
     answer,
+    playTime,
   } = useGameState();
 
   useEffect(() => {
     if (result.gameStatus !== 'playing') {
-      navigate('/result', { state: { result, answer } });
+      navigate('/result', { state: { result, answer, playTime } });
     }
-  }, [navigate, result, answer]);
+  }, [navigate, result, answer, playTime]);
 
   function handleOpenModal() {
     setIsModalOpen(true);
@@ -36,6 +38,7 @@ export default function GamePage() {
       <GameHeader
         tryCount={prevRows.length + 1}
         onOpenHowToPlayModal={handleOpenModal}
+        playTime={getPlayTime(playTime)}
       />
       <section className="flex justify-center">
         <GameBoard prevRows={prevRows} currentRow={currentInput} />

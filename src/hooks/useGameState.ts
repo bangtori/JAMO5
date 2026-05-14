@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import wordList from '../data/wordList.json';
 import {
   type GameResult,
@@ -20,6 +20,16 @@ export default function useGameState() {
     gameStatus: 'playing',
     board: [],
   });
+
+  const [playTime, setPlayTime] = useState<number>(0);
+
+  useEffect(() => {
+    if (result.gameStatus !== 'playing') return;
+    const timer = setInterval(() => {
+      setPlayTime((prev) => prev + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [result.gameStatus]);
 
   const answer = useMemo(() => {
     const words = wordList as Word[];
@@ -104,5 +114,6 @@ export default function useGameState() {
     deleteLetter,
     submitWord,
     keyboardState,
+    playTime,
   };
 }

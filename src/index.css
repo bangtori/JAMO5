@@ -38,7 +38,8 @@
   - JetBrains Mono(font-mono) : 숫자, 코드 등 모노스페이스가 필요한 곳
   */
   --font-base: 'Noto Sans KR', sans-serif;
-  --font-title: 'Black Han Sans', sans-serif;
+  --font-brand: 'Black Han Sans', sans-serif;
+  --font-title: 'Do Hyeon', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --text-2xs: 0.625rem; /* 10px */
