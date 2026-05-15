@@ -19,12 +19,12 @@ interface ResultState {
 export default function ResultPage() {
   const { state } = useLocation();
   const navigate = useNavigate();
+  const { showToast } = useToastContext();
   // 바로 결과페이지로 들어올 시 홈으로 리다이렉트
   if (!state) {
     navigate('/');
     return null;
   }
-  const { showToast } = useToastContext();
   const { result, answer, playTime: time } = state as ResultState;
   const playTime = getPlayTime(time);
   const copyText = copyResultToClipboard(result, playTime);

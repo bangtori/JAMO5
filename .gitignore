@@ -26,3 +26,6 @@ dist-ssr
 # env
 .env
 .env.local
+
+# scripts
+scripts/kr_korean.csv
