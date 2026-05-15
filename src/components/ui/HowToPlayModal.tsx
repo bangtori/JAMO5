@@ -102,6 +102,10 @@ export default function HowToPlayModal({
                 복합 모음(ㅘ, ㅚ 등)은 사용하지 않아요
               </li>
               <li className="text-sm text-text-muted">
+                쌍자음(ㄲ, ㄸ 등)과 ㅖ, ㅒ는 두 자모로 풀어서 입력해요 (예: ㄲ →
+                ㄱ+ㄱ)
+              </li>
+              <li className="text-sm text-text-muted">
                 같은 자모가 여러 번 입력되면 정답에 있는 개수만큼만
                 초록·노랑으로 표시돼요
               </li>
