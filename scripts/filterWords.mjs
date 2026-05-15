@@ -79,6 +79,27 @@ const JONGSUNG = [
   'ㅎ',
 ];
 
+const DECOMPOSE_MAP = {
+  ㄲ: ['ㄱ', 'ㄱ'],
+  ㄸ: ['ㄷ', 'ㄷ'],
+  ㅃ: ['ㅂ', 'ㅂ'],
+  ㅆ: ['ㅅ', 'ㅅ'],
+  ㅉ: ['ㅈ', 'ㅈ'],
+  ㅖ: ['ㅕ', 'ㅣ'],
+  ㅒ: ['ㅑ', 'ㅣ'],
+  ㄳ: ['ㄱ', 'ㅅ'],
+  ㄵ: ['ㄴ', 'ㅈ'],
+  ㄶ: ['ㄴ', 'ㅎ'],
+  ㄺ: ['ㄹ', 'ㄱ'],
+  ㄻ: ['ㄹ', 'ㅁ'],
+  ㄼ: ['ㄹ', 'ㅂ'],
+  ㄽ: ['ㄹ', 'ㅅ'],
+  ㄾ: ['ㄹ', 'ㅌ'],
+  ㄿ: ['ㄹ', 'ㅍ'],
+  ㅀ: ['ㄹ', 'ㅎ'],
+  ㅄ: ['ㅂ', 'ㅅ'],
+};
+
 function isHangul(c) {
   const code = c.charCodeAt(0);
   return code >= 0xac00 && code <= 0xd7a3;
@@ -100,7 +121,7 @@ function splitJamo(c) {
   if (jong > 0) {
     result.push(JONGSUNG[jong]);
   }
-  return result;
+  return result.flatMap((jamo) => DECOMPOSE_MAP[jamo] ?? [jamo]);
 }
 
 function splitWordToJamo(word) {
