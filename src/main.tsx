@@ -5,11 +5,12 @@ import App from './App.tsx';
 import { ToastProvider } from './context/ToastContext.tsx';
 import ToastContainer from './components/ui/ToastContainer.tsx';
 
+const app = (
+  <ToastProvider>
+    <ToastContainer />
+    <App />
+  </ToastProvider>
+);
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ToastProvider>
-      <ToastContainer />
-      <App />
-    </ToastProvider>
-  </StrictMode>,
+  import.meta.env.PROD ? <StrictMode>{app}</StrictMode> : app,
 );

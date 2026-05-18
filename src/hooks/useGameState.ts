@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react';
-import wordList from '../data/wordList.json';
 import {
   type GameResult,
   type RowResult,
@@ -10,8 +9,9 @@ import {
 import { useToastContext } from '../context/ToastContext';
 import { calculateRowResult } from '../services/gameService';
 import { isGameWon } from '../utils/game';
+import { getRandomWord } from '../services/wordService';
 
-export default function useGameState() {
+export default function useGameState(initialWord?: Word) {
   const { showToast } = useToastContext();
 
   const [currentInput, setCurrentInput] = useState<string[]>([]);
@@ -32,8 +32,7 @@ export default function useGameState() {
   }, [result.gameStatus]);
 
   const answer = useMemo(() => {
-    const words = wordList as Word[];
-    return words[Math.floor(Math.random() * words.length)];
+    return initialWord ?? getRandomWord();
   }, []);
 
   const keyboardState = useMemo(() => {

@@ -5,12 +5,25 @@ import HowToPlayModal from '../components/ui/HowToPlayModal';
 import PageLayout from '../components/ui/PageLayout';
 import { useEffect, useState } from 'react';
 import useGameState from '../hooks/useGameState';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getPlayTime } from '../utils/date';
+import { decodeToken } from '../services/linkService';
+import type { Word } from '../types';
+import { useToastContext } from '../context/ToastContext';
+import {
+  getTryInfo,
+  saveGameEntry,
+  saveGameResult,
+} from '../services/gameStorageService';
 
 export default function GamePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get('token');
+  const tokenData = token ? decodeToken(token) : null;
+  const initialWord: Word | undefined = tokenData?.word;
+
   const {
     currentInput,
     prevRows,
@@ -21,13 +34,46 @@ export default function GamePage() {
     keyboardState,
     answer,
     playTime,
-  } = useGameState();
+  } = useGameState(initialWord);
+
+  const { showToast } = useToastContext();
+
+  useEffect(() => {
+    if (!token) return;
+    // 이미 시도한 적이 있다면 대기 페이지로 리다이렉트
+    const tryInfo = getTryInfo(token);
+    if (tryInfo?.isPlayed) {
+      showToast('이미 플레이한 적이 있어요.', 'warning');
+      navigate(`/waiting?token=${token}`);
+      return;
+    }
+
+    // 아니라면 새 게임 여부 저장하고 시작
+    saveGameEntry(token);
+  }, []);
 
   useEffect(() => {
     if (result.gameStatus !== 'playing') {
+      if (token) {
+        // 링크 모드라면 결과 저장
+        saveGameResult(token, {
+          isPlayed: true,
+          result: result.gameStatus === 'won' ? 'won' : 'lost',
+          ...(result.gameStatus === 'won' && { attempts: prevRows.length }),
+        });
+      }
       navigate('/result', { state: { result, answer, playTime } });
     }
   }, [navigate, result, answer, playTime]);
+
+  useEffect(() => {
+    if (token && !tokenData) {
+      showToast('유효하지 않은 링크예요.', 'danger');
+      navigate('/');
+    }
+  }, []);
+
+  if (token && !tokenData) return null;
 
   function handleOpenModal() {
     setIsModalOpen(true);

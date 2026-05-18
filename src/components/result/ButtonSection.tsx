@@ -20,7 +20,7 @@ export default function ButtonSection({
         appearance="outline"
         variant="neutral"
       >
-        다시 도전하기
+        홈으로 돌아가기
       </Button>
     </section>
   );
