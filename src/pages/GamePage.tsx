@@ -38,11 +38,16 @@ export default function GamePage() {
 
   const { showToast } = useToastContext();
 
+  const [alreadyPlayed] = useState(() => {
+    if (!token) return false;
+    const tryInfo = getTryInfo(token);
+    return tryInfo !== null; // 이미 저장된 게 있으면 true
+  });
+
   useEffect(() => {
     if (!token) return;
     // 이미 시도한 적이 있다면 대기 페이지로 리다이렉트
-    const tryInfo = getTryInfo(token);
-    if (tryInfo?.isPlayed) {
+    if (alreadyPlayed) {
       showToast('이미 플레이한 적이 있어요.', 'warning');
       navigate(`/waiting?token=${token}`);
       return;
@@ -50,7 +55,8 @@ export default function GamePage() {
 
     // 아니라면 새 게임 여부 저장하고 시작
     saveGameEntry(token);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, navigate, alreadyPlayed]);
 
   useEffect(() => {
     if (result.gameStatus !== 'playing') {
@@ -64,14 +70,14 @@ export default function GamePage() {
       }
       navigate('/result', { state: { result, answer, playTime } });
     }
-  }, [navigate, result, answer, playTime]);
+  }, [navigate, result, answer, playTime, prevRows.length, token]);
 
   useEffect(() => {
     if (token && !tokenData) {
       showToast('유효하지 않은 링크예요.', 'danger');
       navigate('/');
     }
-  }, []);
+  }, [token, tokenData, showToast, navigate]);
 
   if (token && !tokenData) return null;
 

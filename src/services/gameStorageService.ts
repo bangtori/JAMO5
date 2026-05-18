@@ -8,6 +8,7 @@ function getKey(token: string) {
 
 // 게임 시작
 export function saveGameEntry(token: string) {
+  if (localStorage.getItem(getKey(token))) return;
   const startData: TryInfo = {
     isPlayed: true,
     result: 'lost',

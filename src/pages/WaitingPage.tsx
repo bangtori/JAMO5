@@ -53,7 +53,7 @@ export default function WaitingPage() {
       showToast('만료되었거나 유효하지 않은 링크예요.', 'danger');
       navigate('/');
     }
-  }, []);
+  }, [token, tokenData, showToast, navigate]);
 
   if (token && !tokenData) {
     return null;

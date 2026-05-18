@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useCallback, useContext, useState } from 'react';
 import type { ToastItem, ToastType } from '../types';
 import { TOAST_DURATION } from '../constants';
 // 밖에서 꺼내 쓸 수 있는 기능 명세 = value의 타입
@@ -14,7 +14,7 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
-  function showToast(message: string, type: ToastType = 'default') {
+  const showToast = useCallback((message: string, type: ToastType = 'default') => {
     const id = crypto.randomUUID();
     const newToast: ToastItem = {
       id,
@@ -24,13 +24,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setToasts((prev) => [...prev, newToast]);
 
     setTimeout(() => {
-      removeToast(id);
+      setToasts((prev) => prev.filter((t) => t.id !== id));
     }, TOAST_DURATION);
-  }
-
-  function removeToast(id: string) {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
-  }
+  }, []);
 
   return (
     <ToastContext.Provider value={{ toasts, showToast }}>

@@ -12,5 +12,5 @@ const app = (
   </ToastProvider>
 );
 createRoot(document.getElementById('root')!).render(
-  import.meta.env.PROD ? <StrictMode>{app}</StrictMode> : app,
+  <StrictMode>{app}</StrictMode>,
 );
