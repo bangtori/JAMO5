@@ -87,6 +87,8 @@ const DECOMPOSE_MAP = {
   ㅉ: ['ㅈ', 'ㅈ'],
   ㅖ: ['ㅕ', 'ㅣ'],
   ㅒ: ['ㅑ', 'ㅣ'],
+  ㅔ: ['ㅓ', 'ㅣ'],
+  ㅐ: ['ㅏ', 'ㅣ'],
   ㄳ: ['ㄱ', 'ㅅ'],
   ㄵ: ['ㄴ', 'ㅈ'],
   ㄶ: ['ㄴ', 'ㅎ'],
@@ -141,18 +143,56 @@ function isValidForGame(jamos) {
 }
 
 // CSV 읽기
-const csv = fs.readFileSync('./scripts/kr_korean.csv', 'utf-8');
+// const csv = fs.readFileSync('./scripts/kr_korean.csv', 'utf-8');
+// const lines = csv.split('\n');
+
+// const result = [];
+// const seen = new Set();
+
+// for (const line of lines) {
+//   const [word, part] = line.split(',');
+
+//   // 명사만, 하이픈 없는 것만
+//   if (part?.trim() !== '명사') continue;
+//   if (word.includes('-')) continue;
+
+//   const jamos = splitWordToJamo(word.trim());
+//   if (!isValidForGame(jamos)) continue;
+
+//   if (seen.has(word.trim())) continue;
+//   seen.add(word.trim());
+
+//   result.push({ word: word.trim(), letters: jamos });
+// }
+
+// fs.writeFileSync('./src/data/wordList.json', JSON.stringify(result, null, 2));
+// console.log(`완료: ${result.length}개 단어`);
+const csv = fs.readFileSync('./scripts/wordList.csv', 'utf-8');
 const lines = csv.split('\n');
 
 const result = [];
 const seen = new Set();
 
-for (const line of lines) {
-  const [word, part] = line.split(',');
+for (const line of lines.slice(1)) {
+  // CSV 형태:
+  // 순위,단어,품사,풀이,등급
 
-  // 명사만, 하이픈 없는 것만
-  if (part?.trim() !== '명사') continue;
+  const [, rawWord, part] = line.split(',');
+
+  if (!rawWord || !part) continue;
+
+  // 동음이의어 번호 제거
+  // 가격03 -> 가격
+  const word = rawWord.trim().replace(/\d+$/, '');
+
+  // 명사만
+  if (part.trim() !== '명') continue;
+
+  // 하이픈 제거
   if (word.includes('-')) continue;
+
+  // 한글만 허용
+  if (!/^[가-힣]+$/.test(word)) continue;
 
   const jamos = splitWordToJamo(word.trim());
   if (!isValidForGame(jamos)) continue;
