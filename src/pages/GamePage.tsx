@@ -61,12 +61,12 @@ export default function GamePage() {
   useEffect(() => {
     if (result.gameStatus !== 'playing') {
       if (token) {
-        // 링크 모드라면 결과 저장
-        saveGameResult(token, {
-          isPlayed: true,
-          result: result.gameStatus === 'won' ? 'won' : 'lost',
-          ...(result.gameStatus === 'won' && { attempts: prevRows.length }),
-        });
+        // 링크 모드라면 결과 저장 (discriminated union에 맞게 분기)
+        if (result.gameStatus === 'won') {
+          saveGameResult(token, { isPlayed: true, result: 'won', attempts: prevRows.length });
+        } else {
+          saveGameResult(token, { isPlayed: true, result: 'lost' });
+        }
       }
       navigate('/result', { state: { result, answer, playTime } });
     }
